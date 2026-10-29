@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="id"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Ngekos — Dashboard Pemilik</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet"><link rel="stylesheet" href="/assets/styles.css"></head>
+<body class="dashboard-page">
+<div class="page-shell">
+  <header class="site-header"><a class="brand" href="/" aria-label="Ngekos beranda"><span class="brand-mark">n</span><span>Ngekos<span class="brand-dot">.</span></span></a><div class="header-actions"><span class="user-greeting" id="ownerName"></span><button class="outline-button" id="ownerLogout" type="button">Keluar</button></div></header>
+  <main class="dash-main">
+    <div class="dash-top"><div><span class="section-kicker">Dashboard pemilik</span><h1>Kelola kosmu</h1></div><button class="primary-button" id="newListing" type="button">Pasang kos baru <span>+</span></button></div>
+    <div class="dash-stats" id="dashStats"></div>
+    <div class="dash-tabs" role="tablist"><button class="active" data-tab="listings" type="button">Kos saya</button><button data-tab="reviews" type="button">Ulasan</button></div>
+    <section id="tab-listings"></section>
+    <section id="tab-reviews" hidden></section>
+  </main>
+</div>
+<div class="modal-backdrop" id="listingModal" hidden><div class="inquiry-modal owner-modal" role="dialog" aria-modal="true" aria-labelledby="listingModalTitle"><button class="modal-close" type="button" aria-label="Tutup">×</button><h2 id="listingModalTitle">Pasang kos baru</h2>
+  <form class="inquiry-form" id="listingForm">
+    <label>Nama kos<input name="name" type="text" maxlength="150" placeholder="Contoh: Kost Melati" required></label>
+    <label>Lokasi / alamat singkat<input name="location" type="text" maxlength="200" placeholder="Contoh: Dipatiukur, Bandung" required></label>
+    <div class="form-row"><label>Kota<input name="city" type="text" maxlength="100" placeholder="Bandung" required></label><label>Tipe<select name="type" required><option value="Putri">Putri</option><option value="Putra">Putra</option><option value="Campur">Campur</option></select></label></div>
+    <div class="form-row"><label>Harga per bulan (Rp)<input name="price" type="number" min="100000" step="50000" placeholder="1500000" required></label><label>Label (opsional)<input name="tag" type="text" maxlength="80" placeholder="Baru"></label></div>
+    <label>Fasilitas (pisahkan dengan koma)<input name="features" type="text" placeholder="WiFi, AC, Kamar mandi dalam"></label>
+    <label>Deskripsi<textarea name="description" rows="4" maxlength="1000" placeholder="Ceritakan keunggulan kosmu" required></textarea></label>
+    <label>Nomor WhatsApp untuk iklan ini<input name="contactPhone" type="tel" placeholder="08xx xxxx xxxx" required></label>
+    <label>Foto kos<input id="imageFile" type="file" accept="image/jpeg,image/png,image/webp"></label>
+    <div class="image-preview" id="imagePreview" hidden><img alt="Pratinjau foto kos"><span id="imageStatus"></span></div>
+    <label class="check-row"><input name="isActive" type="checkbox" checked> Tampilkan iklan ini di pencarian</label>
+    <button class="primary-button" type="submit" id="listingSubmit">Simpan kos <span>→</span></button>
+    <p class="form-error" id="listingError" hidden></p>
+  </form></div></div>
+<div class="toast" id="toast" role="status"></div>
+<script src="/assets/owner.js" defer></script>
+</body></html>
