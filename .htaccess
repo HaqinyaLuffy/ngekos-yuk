@@ -1,0 +1,24 @@
+# Ngekos - routing untuk InfinityFree (Apache)
+Options -Indexes
+DirectoryIndex index.html
+
+<IfModule mod_rewrite.c>
+RewriteEngine On
+
+# Halaman bersih (sama seperti rewrites di Vercel)
+RewriteRule ^login/?$ auth.html [L]
+RewriteRule ^register/?$ auth.html [L]
+RewriteRule ^owner/login/?$ owner-auth.html [L]
+RewriteRule ^owner/register/?$ owner-auth.html [L]
+RewriteRule ^owner/dashboard/?$ owner-dashboard.html [L]
+
+# Semua permintaan /api/... diarahkan ke satu pengendali PHP
+RewriteCond %{REQUEST_URI} !^/api/index\.php$
+RewriteRule ^api(/.*)?$ api/index.php [L,QSA]
+</IfModule>
+
+# Header keamanan dasar
+<IfModule mod_headers.c>
+Header set X-Content-Type-Options "nosniff"
+Header set Referrer-Policy "strict-origin-when-cross-origin"
+</IfModule>
